@@ -47,7 +47,7 @@ module.exports = {
                 })
                 res.render('register', {
                     errMsg:  null,
-                    success: 'Successfully registered. Please check your email:'+req.body.email+' to activate your account'
+                    success: 'Email sent to activate your account. Please check your email'
                 });
             } else {
                 return res.render('register', {

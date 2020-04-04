@@ -1,9 +1,14 @@
 const mongoose = require('mongoose')
 
-mongoose.connect(process.env.MONGODB_URL||'mongodb://127.0.0.1:27017/class-of-2019',{
+
+mongoose.connect('mongodb+srv://ayoush:ayoush26@cluster0-ps1qq.mongodb.net/class-of-2019?retryWrites=true&w=majority',{
     useNewUrlParser: true,
     useCreateIndex: true,
-    useUnifiedTopology: true
+    useUnifiedTopology:true
+})
+
+mongoose.connection.on('connected',()=>{
+    console.log('db connected')
 })
 
 
