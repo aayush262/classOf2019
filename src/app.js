@@ -109,7 +109,7 @@ app.use((error,req,res,next)=>{
 })
 
 
-const port =process.env.OPENSHIFT_NODEJS_PORT || 3000;
+const port =process.env.PORT || 3000;
 app.listen(port,function(err,done){
     if(err){
         console.log(err)
