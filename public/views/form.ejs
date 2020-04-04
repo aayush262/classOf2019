@@ -1,0 +1,75 @@
+
+
+    <div class="friends">
+        <header>
+            <%- include('includes/nav.ejs') %>
+        </header>   
+    </div>
+    <div class="container form-body">
+        <div id="baj-logo">
+            <img src="/public/Assets/bs.jpg" style="height: 125px;width:auto; float:right;" alt="">
+        </div>
+    
+
+        <div class="leftbox">
+        </div>
+        <div class="rightbox">
+            <a class="logout" href="/logout">
+                logout
+            </a>
+                <form action="/friends" method="POST" id="myForm" enctype="multipart/form-data" class="profile">
+
+                    <h1 style="color: rgba(43,55,96,1);"><% if(user){ %>
+                        <%=  user.name.charAt(0).toUpperCase() + user.name.slice(1); %>
+                    <% } %>'s Personal Info</h1>
+                    <h2>Title</h2>
+                    <input type="text" name="title" class="no-outline" placeholder="Eg. Logic King, KUBH Snake" id="title">
+                    <h2>Full Name</h2>
+                    <input type="text" name="fullname" value='<% if(user){ %> <%=user.name.charAt(0).toUpperCase() + user.name.slice(1);%> <%}else{%><%}%>' class="no-outline" placeholder="Reborn into a Bajgain" id="fname">
+                    <h2>Birthday</h2>
+                    <input type="date" name="birthday" class="no-outline" id="bdate">
+                    <h2>Gender</h2>
+                    <select class="form-control" id="sel1" name="gender">
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Others</option>
+                    </select>
+                    <h2>Email</h2>
+                    <input type = "email" name="email" value='<% if(user){ %> <%=user.email;%> <%}else{%><%}%>' class="no-outline" size="30" id="email">
+                    <h2>Favourite Bajgain Tale </h2>
+                    <textarea name="tale" id="tales" cols="30" rows="10" id="tale"></textarea>
+                    <input type="file" name="picture" accept="image/*" id="picture">
+                    <div class="pledge">
+                        <button> I pledge to be a Bajgain Forever !</button>
+                    </div>
+                    
+                </form>
+              
+        
+        </div>
+            
+          
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js" integrity="sha256-lPE3wjN2a7ABWHbGz7+MKBJaykyzqCbU96BJWjio86U=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TimelineMax.min.js" integrity="sha256-fIkQKQryItPqpaWZbtwG25Jp2p5ujqo/NwJrfqAB+Qk=" crossorigin="anonymous"></script>
+        
+<script>
+    document.querySelector('#myForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
+        var form = new FormData($(this)[0]);
+        $.ajax({
+            url: '/friends',
+            method: "POST",
+            dataType: 'json',
+            data: form,
+            processData: false,
+            contentType: false,
+            success: function(result){window.location.href = "/";},
+            error: function(er){console.log(er)}
+        });
+
+    })
+    
+
+  
+</script>
